@@ -1,17 +1,19 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber"
-import { ContactShadows, Environment, Lightformer, OrbitControls, Loader } from "@react-three/drei"
+import { ContactShadows, Environment, Lightformer, OrbitControls } from "@react-three/drei"
 
 import { CustomizationProvider } from "./context/Customization"
 import Configurator from "./components/Configurator";
 import { NewTundra } from "./vehicles/NewTundra";
+
+import RocketLoader from "./components/RocketLoader";
 
 export default function App() {
 
   return (
     <CustomizationProvider>
       <div className="App">
-      <Loader />
+      <RocketLoader />
         <Canvas shadows camera={{ position: [0, 0, 20], fov:35 }}>
           <color attach="background" args={['#15151a']} />
           <Suspense fallback={null}>
