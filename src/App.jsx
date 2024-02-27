@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber"
-import { ContactShadows, Environment, Lightformer, OrbitControls } from "@react-three/drei"
+import { ContactShadows, Environment, Lightformer, Loader, OrbitControls } from "@react-three/drei"
 
 import { CustomizationProvider } from "./context/Customization"
 import Configurator from "./components/Configurator";
@@ -13,11 +13,13 @@ export default function App() {
   return (
     <CustomizationProvider>
       <div className="App">
-      <RocketLoader />
-        <Canvas shadows camera={{ position: [0, 0, 20], fov:35 }}>
+        <Loader
+        initialState={(active) => active} // Initial black out state
+        />
+        <Canvas shadows camera={{ position: [0, 0, 20], fov: 35 }}>
           <color attach="background" args={['#15151a']} />
           <Suspense fallback={null}>
-          <NewTundra scale={3} position={[0, -1.1, 0]} />
+            <NewTundra scale={3} position={[0, -1.1, 0]} />
           </Suspense>
           <hemisphereLight intensity={0.5} />
           {/* <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={15} blur={0.5} opacity={0.5} far={20} /> */}
