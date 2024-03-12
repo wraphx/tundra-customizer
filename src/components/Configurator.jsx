@@ -1,7 +1,6 @@
 import { useCustomization } from '../context/Customization';
 import Select, { components } from 'react-select';
 import '../App.css';
-// import { useForm } from 'react-hook-form';
 import ColorPicker from './ColorPicker';
 
 const options = [
@@ -44,7 +43,6 @@ const Configurator = () => {
 
     const handleOverlayChange = (selectedOption) => {
         setOverlay(selectedOption.value);
-        // console.log(`You've selected the ${selectedOption.label} wrap for your `)
     };
 
 
@@ -56,56 +54,25 @@ const Configurator = () => {
                 <div className='configurator__section__title'>
                     Select Vehicle Wrap
                 </div>
-                <div style={{ width: 'auto' }}>
+                <div className='selector' >
                     <Select
                         value={options.find(option => option.value === overlay)}
                         options={options}
                         onChange={handleOverlayChange}
                         placeholder="Select Material"
                         components={{ Option }}
+                        isSearchable={false}
                         getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.value}
+                        getOptionValue={(option) => option.value}                        
                     />
-                </div>
-                <div className='configurator__section__title'>
-                    Change Hue Color
-                    <div>
-                        <ColorPicker />
-                    </div>
-                </div>
-                {/* <AppForm /> */}
+                    <div className='picker-color'>
+                         <ColorPicker />
+                         </div>
+                </div>                        
+                   
             </div>
         </>
     );
 };
-
-
-// export const AppForm = () => {
-//     const {
-//         register,
-//         handleSubmit,
-//         formState: { errors },
-//     } = useForm();
-
-//     const onSubmit = (data) => {
-//         console.log(data)
-//     }
-
-//     return (
-//         <form className='tutorial gap-2' onSubmit={handleSubmit(onSubmit)}>
-//             <input {...register("email", {
-//                 required: 'Email Is Required',
-//             })} />
-//             {errors.email && <div className='text-red-500'>{errors.email.message}</div>}
-//             <input {...register("password", {
-//                 required: 'Password Is Required',
-//                 minLength: 5,
-//                 placeholder: 'Password',
-//             })} />
-//             {errors.password && <div className='text-red-500'>{errors.password.message}</div>}
-//             <button type='submit'>Submit</button>
-//         </form>
-//     )
-// }
 
 export default Configurator;
